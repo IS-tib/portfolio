@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Isabella Shen</title>
+<meta name="description" content="Isabella Shen, computer science student at Penn Engineering. I build full-stack ML and systems software and do computational-biology research. Three peer-reviewed papers, USACO Gold." />
+
+<meta property="og:title" content="Isabella Shen" />
+<meta property="og:description" content="I build full-stack ML and systems software, and I do computational-biology research." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23121316'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23FAF9F6' text-anchor='middle'%3Eis%3C/text%3E%3C/svg%3E" />
+
+<style>
+/* =========================================================================
+   Tokens.
+
+   Deliberately close to monochrome. One ink, one paper, one accent used only
+   for links and the single hero marker. Colour is not doing the work here;
+   type and rules are.
+   ====================================================================== */
+:root{
+  --paper:#FAF9F6;
+  --paper-2:#F3F1EC;
+  --surface:#FFFFFF;
+  --ink:#121316;
+  --ink-2:#3C3E45;
+  --ink-3:#6B6E77;
+  --ink-4:#9A9DA5;
+  --line:#E4E1DA;
+  --line-2:#CFCBC1;
+  --accent:#2B3A67;
+  --accent-2:#41558F;
+
+  --serif:"Instrument Serif", "Newsreader", ui-serif, Georgia, serif;
+  --sans:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --maxw:1120px;
+  --ease:cubic-bezier(.22,.8,.28,1);
+}
+
+[data-theme="dark"]{
+  --paper:#0E0F12;
+  --paper-2:#131519;
+  --surface:#15171B;
+  --ink:#F2F1EE;
+  --ink-2:#C2C4CA;
+  --ink-3:#8E9199;
+  --ink-4:#6A6D76;
+  --line:#24262C;
+  --line-2:#353840;
+  --accent:#9FB4E8;
+  --accent-2:#B9C8F0;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"kern" 1;
+}
+h1,h2,h3,h4{margin:0;font-weight:400;letter-spacing:-.018em;line-height:1.06}
+h1{font-family:var(--serif);font-size:clamp(3.4rem,11vw,7.5rem)}
+h2{font-family:var(--serif);font-size:clamp(2.1rem,4.6vw,3.2rem)}
+h3{font-family:var(--serif);font-size:clamp(1.5rem,2.4vw,1.95rem)}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* Small caps label. The old page numbered its sections 01 through 05, which is
+   the kind of thing that decorates a template rather than helping a reader. */
+.label{
+  font-family:var(--mono);font-size:.7rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4);
+}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ------------------------------------------------------------------ nav -- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--serif);font-size:1.28rem;letter-spacing:-.02em}
+.nav-links{display:flex;align-items:center;gap:1.6rem}
+.nav-links a{
+  font-size:.86rem;color:var(--ink-3);
+  border-bottom:1px solid transparent;padding-bottom:1px;
+  transition:color .18s var(--ease),border-color .18s var(--ease);
+}
+.nav-links a:hover{color:var(--ink);border-bottom-color:var(--ink-4)}
+.icon-btn{
+  background:none;border:0;padding:6px;margin-left:.3rem;cursor:pointer;
+  color:var(--ink-3);border-radius:6px;display:grid;place-items:center;
+  transition:color .18s var(--ease),background .18s var(--ease);
+}
+.icon-btn:hover{color:var(--ink);background:var(--paper-2)}
+
+/* ----------------------------------------------------------------- hero -- */
+.hero{padding:clamp(4.5rem,13vw,9rem) 0 clamp(3rem,7vw,5rem)}
+.hero .avail{display:flex;align-items:center;gap:.55rem;margin-bottom:clamp(1.6rem,4vw,2.6rem)}
+.pulse{
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent);
+  animation:pulse 2.6s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}
+  70%{box-shadow:0 0 0 7px transparent}
+  100%{box-shadow:0 0 0 0 transparent}
+}
+.hero h1{margin-bottom:clamp(1.2rem,3vw,2rem)}
+.lede{
+  font-family:var(--serif);font-size:clamp(1.4rem,2.9vw,2.1rem);
+  line-height:1.3;letter-spacing:-.012em;color:var(--ink-2);max-width:22ch;
+}
+.lede em{font-style:italic;color:var(--ink)}
+.hero-meta{
+  margin-top:clamp(2rem,5vw,3.2rem);padding-top:1.1rem;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.86rem;color:var(--ink-3);
+}
+.hero-meta b{font-weight:600;color:var(--ink-2)}
+.hero-links{display:flex;flex-wrap:wrap;gap:1.4rem;margin-top:1.6rem}
+.ln{
+  font-size:.92rem;color:var(--ink);
+  border-bottom:1px solid var(--line-2);padding-bottom:2px;
+  transition:border-color .18s var(--ease),color .18s var(--ease);
+}
+.ln:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* -------------------------------------------------------------- sections -- */
+section{padding:clamp(3rem,6.5vw,5rem) 0}
+/* A hairline between sections rather than a field of whitespace. The gap was
+   reading as a gap rather than as a division. */
+section + section{border-top:1px solid var(--line)}
+.contact{border-top:1px solid var(--line)}
+.sec-head{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(1rem,4vw,3rem);align-items:end;margin-bottom:clamp(2rem,5vw,3.2rem);
+}
+.sec-head h2{margin-top:.5rem}
+.sec-note{color:var(--ink-3);font-size:.95rem;max-width:46ch}
+
+/* ----------------------------------------------------------------- work -- */
+/* An editorial list rather than a grid of boxes. Six identical rounded cards
+   with pill rows is the shape every generated portfolio has; rules and a
+   two-column measure read like something that was set rather than emitted. */
+.work-list{border-top:1px solid var(--line)}
+.item{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.32fr);
+  gap:clamp(.8rem,4vw,3rem);
+  padding:clamp(1.8rem,4vw,2.9rem) 0;border-bottom:1px solid var(--line);
+  transition:background .3s var(--ease);
+}
+.item:hover{background:color-mix(in srgb,var(--paper-2) 55%,transparent)}
+.item-l h3{margin-bottom:.5rem;font-size:clamp(1.6rem,2.6vw,2.15rem)}
+.item-kind{font-family:var(--mono);font-size:.7rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:.75rem}
+.item-sum{color:var(--ink-2);font-size:1.02rem;max-width:34ch}
+.item-r{display:grid;gap:1rem;align-content:start;padding-top:.15rem}
+.item-detail{color:var(--ink-3);font-size:.92rem}
+.item-detail b{color:var(--ink-2);font-weight:600}
+.item-nums{
+  display:flex;flex-wrap:wrap;gap:.35rem 1.5rem;
+  font-family:var(--mono);font-size:.76rem;color:var(--ink-3);
+}
+.item-nums b{color:var(--ink);font-weight:500}
+.item-foot{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 1.5rem;
+  align-items:baseline;padding-top:.15rem;
+}
+/* Stack, not pills. */
+.stack-line{font-family:var(--mono);font-size:.74rem;color:var(--ink-4);letter-spacing:.01em}
+.item-links{display:flex;gap:1.2rem;flex:none}
+.item-links a{
+  font-size:.84rem;color:var(--ink-2);
+  border-bottom:1px solid var(--line-2);padding-bottom:1px;white-space:nowrap;
+  transition:color .18s var(--ease),border-color .18s var(--ease);
+}
+.item-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.item-links a::after{content:" \2197";color:var(--ink-4);font-size:.8em}
+.item-links a:hover::after{color:var(--accent)}
+
+/* --------------------------------------------------------------- papers -- */
+.pubs{border-top:1px solid var(--line)}
+.pub{
+  display:grid;grid-template-columns:8.5rem minmax(0,1fr);
+  gap:clamp(.5rem,3vw,2rem);
+  padding:1.5rem 0;border-bottom:1px solid var(--line);
+}
+.venue{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--ink);letter-spacing:.04em}
+.yr{font-family:var(--mono);font-size:.72rem;color:var(--ink-4);margin-top:.15rem}
+.pub h4{font-size:1.02rem;font-family:var(--sans);font-weight:600;line-height:1.4;letter-spacing:-.005em}
+.auth{font-size:.86rem;color:var(--ink-3);margin-top:.3rem}
+.auth .me{color:var(--ink);font-weight:600}
+.pub-foot{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:baseline;margin-top:.55rem}
+.role-tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4)}
+.plink{font-size:.84rem;color:var(--accent);border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);padding-bottom:1px}
+.plink:hover{border-bottom-color:var(--accent)}
+
+.roles{margin-top:clamp(2.5rem,6vw,4rem)}
+.roles .label{display:block;margin-bottom:1.2rem}
+.role-row{padding:1.25rem 0;border-bottom:1px solid var(--line)}
+.role-row:first-of-type{border-top:1px solid var(--line)}
+.r-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;align-items:baseline}
+.r-top h4{font-family:var(--sans);font-size:.98rem;font-weight:600;letter-spacing:-.005em}
+.r-place{color:var(--ink-3);font-weight:400}
+.r-top time{font-family:var(--mono);font-size:.74rem;color:var(--ink-4);flex:none}
+.role-row p{color:var(--ink-3);font-size:.9rem;margin-top:.35rem;max-width:78ch}
+
+/* ---------------------------------------------------------------- about -- */
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,5vw,4rem)}
+.about p{color:var(--ink-2);font-size:1.02rem}
+.about p + p{margin-top:1rem}
+.about a{color:var(--accent);border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+/* Comma-separated lines, not thirty pills. A pill grid says "I had a list and
+   a component"; a set line says someone decided how it should read. */
+.sk-row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.5rem 1.2rem;
+  padding:.85rem 0;border-bottom:1px solid var(--line)}
+.sk-row:first-child{border-top:1px solid var(--line)}
+.sk-row dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);padding-top:.22rem}
+.sk-row dd{margin:0;font-size:.92rem;color:var(--ink-2)}
+
+/* --------------------------------------------------------------- awards -- */
+.awards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(1.5rem,5vw,4rem)}
+.award{display:grid;grid-template-columns:4.5rem minmax(0,1fr);gap:1rem;
+  padding:1rem 0;border-bottom:1px solid var(--line)}
+.award .y{font-family:var(--mono);font-size:.74rem;color:var(--ink-4);padding-top:.2rem}
+.award b{font-weight:600;font-size:.96rem;display:block}
+.award span{font-size:.85rem;color:var(--ink-3)}
+
+/* -------------------------------------------------------------- contact -- */
+.contact{background:var(--paper-2)}
+.contact h2{max-width:16ch;margin:.6rem 0 1rem}
+.contact p{color:var(--ink-3);max-width:52ch}
+.contact .hero-links{margin-top:2rem}
+footer{border-top:1px solid var(--line);padding:1.8rem 0;background:var(--paper-2)}
+.foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+  font-family:var(--mono);font-size:.72rem;color:var(--ink-4)}
+
+/* --------------------------------------------------------------- reveal -- */
+/* Starts visible. The class only ever adds the animation, so if the observer
+   never runs, which is what happens in a print or a full-page capture, the
+   page is simply already there instead of blank. */
+.reveal.armed{opacity:0;transform:translateY(12px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+
+@media (max-width:860px){
+  .sec-head{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr;gap:1.1rem}
+  .about-grid{grid-template-columns:1fr}
+  .awards{grid-template-columns:1fr}
+  .pub{grid-template-columns:1fr;gap:.4rem}
+  .sk-row{grid-template-columns:1fr;gap:.2rem}
+  .hide-sm{display:none}
+  .lede{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+@media print{
+  .nav,.icon-btn,.contact .hero-links{display:none}
+  body{background:#fff}
+  .item,.pub,.role-row,.award{break-inside:avoid}
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">Isabella&nbsp;Shen</a>
+    <nav class="nav-links">
+      <a class="hide-sm" href="#work">Work</a>
+      <a class="hide-sm" href="#research">Research</a>
+      <a class="hide-sm" href="#about">About</a>
+      <a class="hide-sm" href="#contact">Contact</a>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ================================================================ hero -- -->
+<section class="hero">
+  <div class="wrap">
+    <div class="avail reveal"><span class="pulse"></span><span class="label">Open to SWE and research internships</span></div>
+    <h1 class="reveal">Isabella Shen</h1>
+    <p class="lede reveal">I build <em>full-stack ML and systems software</em>, and I do computational-biology research.</p>
+
+    <div class="hero-meta reveal">
+      <span>Computer science, <b>Penn Engineering '30</b></span>
+      <span><b>Three</b> peer-reviewed papers</span>
+      <span>USACO <b>Gold</b></span>
+      <span>YC Startup School <b>'26</b></span>
+      <span><b>$400K+</b> raised for nonprofit</span>
+    </div>
+
+    <div class="hero-links reveal">
+      <a class="ln" href="#work">Selected work</a>
+      <a class="ln" href="mailto:shenisabella@gmail.com">shenisabella@gmail.com</a>
+      <a class="ln" href="https://github.com/IS-tib" target="_blank" rel="noopener">github.com/IS-tib</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ work -- -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="label">Building</span>
+        <h2>Selected work</h2>
+      </div>
+      <p class="sec-note">Full-stack ML and systems projects I designed, built and deployed. Live demos and source below.</p>
+    </div>
+
+    <div class="work-list">
+
+      <!-- Penn Four Year Planner -->
+      <article class="item reveal">
+        <div class="item-l">
+          <div class="item-kind">Full-stack · graph and matching algorithms</div>
+          <h3>Penn Four Year Planner</h3>
+          <p class="item-sum">A degree planner for ten Penn programs that checks a four year plan against the catalog's real rules, not a credit total.</p>
+        </div>
+        <div class="item-r">
+          <p class="item-detail">
+            Prerequisites are transcribed from the Penn catalog and stored in conjunctive normal form, so the server evaluates a whole plan as a boolean expression and reports not just which course is out of order but the term it would have to move to. The degree audit is a <b>maximum bipartite matching</b> rather than a sum, because Penn's own footnote says a course may count only once: matching spends each course exactly once and shows which course paid for which requirement, where summing would let one course satisfy two rows and call an unfinished plan complete. The ten degrees are stored as data rather than code, so the same plan can be re-audited against another major to show what carries over, what stops counting, and how many extra semesters it would cost.
+          </p>
+          <div class="item-nums">
+            <span><b>10</b> degrees, two schools</span>
+            <span><b>209</b> courses transcribed</span>
+            <span><b>285</b> tests and browser checks</span>
+          </div>
+          <div class="item-foot">
+            <span class="stack-line">Python · FastAPI · SQLAlchemy · React · SQLite</span>
+            <span class="item-links">
+              <a href="https://penn-four-year-planner.vercel.app/" target="_blank" rel="noopener">Live</a>
+              <a href="https://github.com/IS-tib/penn-four-year-planner" target="_blank" rel="noopener">Source</a>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Research Radar -->
+      <article class="item reveal">
+        <div class="item-l">
+          <div class="item-kind">Full-stack · ML relevance ranking</div>
+          <h3>Research Radar</h3>
+          <p class="item-sum">Aggregates new papers from bioRxiv, arXiv and PubMed, and ranks them against a researcher's own topics.</p>
+        </div>
+        <div class="item-r">
+          <p class="item-detail">
+            The API normalizes three heterogeneous JSON and XML source formats into one schema and fetches all sources concurrently. Ranking is <b>measured rather than asserted</b>: three rankers, weighted keyword, TF-IDF cosine and Okapi BM25, all implemented in numpy, are scored against a committed labelled fixture set by an offline harness reporting Precision@k, MRR and NDCG@10, so a change to the ranker can be shown to help or not.
+          </p>
+          <div class="item-nums">
+            <span><b>~3x</b> faster via concurrent fetch</span>
+            <span><b>3</b> rankers, benchmarked offline</span>
+            <span><b>41</b> tests</span>
+          </div>
+          <div class="item-foot">
+            <span class="stack-line">Python · FastAPI · React · BM25 / TF-IDF · CI/CD</span>
+            <span class="item-links">
+              <a href="https://research-radar-gold.vercel.app/" target="_blank" rel="noopener">Live</a>
+              <a href="https://github.com/IS-tib/research-radar" target="_blank" rel="noopener">Source</a>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Raft KV -->
+      <article class="item reveal">
+        <div class="item-l">
+          <div class="item-kind">Distributed systems</div>
+          <h3>Distributed Key-Value Store</h3>
+          <p class="item-sum">The Raft consensus algorithm implemented from scratch in Go, with a key-value layer on top.</p>
+        </div>
+        <div class="item-r">
+          <p class="item-detail">
+            Leader election with PreVote, log replication, commit safety and log compaction via snapshotting. State is written to stable storage <b>before any RPC is answered</b>, so a crashed node recovers its term, vote and log rather than coming back blank, which is what stops one term from electing two leaders. The key-value layer adds exactly-once client semantics, closing the window where a retried Append would otherwise be applied twice. An in-memory network simulator injects crashes, partitions and full restarts to prove it.
+          </p>
+          <div class="item-nums">
+            <span><b>29</b> tests, race-clean</span>
+            <span><b>0</b> data loss across crash, partition, restart</span>
+          </div>
+          <div class="item-foot">
+            <span class="stack-line">Go · Concurrency · Raft · Durability · Exactly-once</span>
+            <span class="item-links">
+              <a href="https://github.com/IS-tib/raft-kv" target="_blank" rel="noopener">Source</a>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- scRNA Explorer -->
+      <article class="item reveal">
+        <div class="item-l">
+          <div class="item-kind">Bioinformatics · full-stack</div>
+          <h3>Single-Cell RNA-seq Explorer</h3>
+          <p class="item-sum">Turns a table of thousands of cells by thousands of genes into an interactive map you can actually read.</p>
+        </div>
+        <div class="item-r">
+          <p class="item-detail">
+            Runs the standard single-cell pipeline (QC, normalization, PCA, Leiden clustering, UMAP and marker-gene detection) and renders thousands of cells as an interactive UMAP coloured by cluster or by any gene. Adds the quality-control panel an analyst actually checks first: per-cell gene and count distributions, mitochondrial and ribosomal fractions, and a <b>simulation-based doublet score</b> written in numpy, which flags droplets that captured two cells. A canvas scatter renderer and a lazily imported analysis layer keep the hosted demo light, with live upload-and-analyze of .h5ad and .csv datasets.
+          </p>
+          <div class="item-foot">
+            <span class="stack-line">Python · FastAPI · scanpy · React · Canvas</span>
+            <span class="item-links">
+              <a href="https://scrna-explorer.vercel.app/" target="_blank" rel="noopener">Live</a>
+              <a href="https://github.com/IS-tib/scrna-explorer" target="_blank" rel="noopener">Source</a>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Glioma Predictor -->
+      <article class="item reveal">
+        <div class="item-l">
+          <div class="item-kind">ML · research to product</div>
+          <h3>Glioma Subtype Predictor</h3>
+          <p class="item-sum">A usable demo of my published IEEE research, rather than a figure in a paper.</p>
+        </div>
+        <div class="item-r">
+          <p class="item-detail">
+            Classifies brain-tumor subtypes from molecular markers using a weighted ensemble model, complete with WHO 2021 grade indicators and per-prediction confidence bars.
+          </p>
+          <div class="item-nums">
+            <span><b>~0.89</b> AUC, ensemble model</span>
+            <span><b>IEEE</b> published method</span>
+          </div>
+          <div class="item-foot">
+            <span class="stack-line">Python · scikit-learn · XGBoost · JavaScript</span>
+            <span class="item-links">
+              <a href="https://is-tib.github.io/glioma_predictor.html" target="_blank" rel="noopener">Live</a>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Thyroid PDE -->
+      <article class="item reveal">
+        <div class="item-l">
+          <div class="item-kind">Scientific computing</div>
+          <h3>Thyroid Tumor Growth PDE Simulator</h3>
+          <p class="item-sum">Finite-difference simulations of tumor-growth partial differential equations.</p>
+        </div>
+        <div class="item-r">
+          <p class="item-detail">
+            Explores parameter sensitivity and numerical stability, and visualizes the spatial and temporal progression of the model.
+          </p>
+          <div class="item-foot">
+            <span class="stack-line">Python · MATLAB · Numerical methods · PDEs</span>
+            <span class="item-links">
+              <a href="https://github.com/IS-tib/math_research" target="_blank" rel="noopener">Source</a>
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ research -- -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="label">Research</span>
+        <h2>Publications</h2>
+      </div>
+      <p class="sec-note">Three peer-reviewed papers, two first-author and one second-author, in machine learning for medicine and computational biology.</p>
+    </div>
+
+    <div class="pubs reveal">
+      <div class="pub">
+        <div><div class="venue">IEEE</div><div class="yr">CISP-BMEI 2025</div></div>
+        <div>
+          <h4>Mutation-Driven Ensemble Learning Framework for Glioma Subtype Classification</h4>
+          <p class="auth"><span class="me">I. Shen</span> · IEEE CISP-BMEI 2025, co-sponsored by the IEEE Engineering in Medicine &amp; Biology Society (EMBS)</p>
+          <div class="pub-foot">
+            <span class="role-tag">First author</span>
+            <a class="plink" href="https://doi.org/10.1109/CISP-BMEI68103.2025.11259342" target="_blank" rel="noopener">IEEE Xplore &#8599;</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div><div class="venue">JAMIA</div><div class="yr">2026 · in press</div></div>
+        <div>
+          <h4>Engineering biomarker representations of vital-signs data enhances deep-learning mortality prediction</h4>
+          <p class="auth">Mamandipoor B, <span class="me">Shen I</span>, Hsu CN, Gabriel RA · Journal of the American Medical Informatics Association</p>
+          <div class="pub-foot">
+            <span class="role-tag">Second author</span>
+            <a class="plink" href="https://pubmed.ncbi.nlm.nih.gov/42068567/" target="_blank" rel="noopener">PubMed &#8599;</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div><div class="venue">TNS</div><div class="yr">ICBioMed 2024</div></div>
+        <div>
+          <h4>Cause disparities in coronary heart disease between genders</h4>
+          <p class="auth"><span class="me">I. Shen</span> · Theoretical and Natural Science (ISSN 2753-8818), presented at ICBioMed 2024</p>
+          <div class="pub-foot">
+            <span class="role-tag">First author</span>
+            <a class="plink" href="https://doi.org/10.54254/2753-8818/62/20241467" target="_blank" rel="noopener">Publication &#8599;</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div><div class="venue">INBC</div><div class="yr">2025 · speaker</div></div>
+        <div>
+          <h4>Mutation-based ensemble approaches for glioma subtype prediction</h4>
+          <p class="auth">Conference speaker, 12th International Conference on Neurology &amp; Brain Disorders</p>
+          <div class="pub-foot">
+            <span class="role-tag">Invited talk</span>
+            <a class="plink" href="https://neurologycongress.com/speaker/isabella-shen" target="_blank" rel="noopener">Speaker page &#8599;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roles reveal">
+      <span class="label">Positions</span>
+      <div class="role-row">
+        <div class="r-top"><h4>Research Intern · <span class="r-place">Gabriel Lab, UC San Diego (Anesthesiology)</span></h4><time>2025&ndash;26</time></div>
+        <p>Built end-to-end NLP pipelines over 10,000+ MIMIC-IV clinical notes to predict ICU ventilation needs; fine-tuned transformer models and shipped preprocessing and evaluation pipelines. Second author on the resulting JAMIA paper.</p>
+      </div>
+      <div class="role-row">
+        <div class="r-top"><h4>Research Intern · <span class="r-place">Harvard University &amp; Institut de la Vision</span></h4><time>2024&ndash;25</time></div>
+        <p>Under Dr. Boulanger-Weill: built Python pipelines for 3D neuronal mesh reconstruction and repair (voxel-based hole-filling and topology correction), supporting large-scale zebrafish neuronal morphology and connectivity analysis.</p>
+      </div>
+      <div class="role-row">
+        <div class="r-top"><h4>Research Scholar · <span class="r-place">BU RISE · Computational Neurobiology</span></h4><time>Summer 2025</time></div>
+        <p>Modeled how gut-microbiome disruption alters synaptic and firing dynamics in cortical networks affected by Huntington's Disease.</p>
+      </div>
+      <div class="role-row">
+        <div class="r-top"><h4>Summer Research · <span class="r-place">Stanford Cardiothoracic Surgery · COSMOS UC Davis</span></h4><time>2023&ndash;24</time></div>
+        <p>Regenerative-medicine and stem-cell research at Stanford; mathematical modeling of cardiac arrhythmias with finite-difference methods at COSMOS UC Davis (Cluster 9).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== about -- -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="label">About</span>
+        <h2>Who I am</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about reveal">
+        <p>I'm a first-year computer science student at the University of Pennsylvania's School of Engineering and Applied Science. I like problems that sit between disciplines, where a systems idea meets a biological question or an ML model has to hold up to a clinical standard.</p>
+        <p>My work runs on two tracks. I build real, deployed software: distributed systems, full-stack ML tools, scientific simulators. And I do peer-reviewed research. I also co-lead <a href="https://www.siliconvalleyyouth.com" target="_blank" rel="noopener">Silicon Valley Youth</a>, a student-run nonprofit I helped scale to 40+ instructors and 20+ classes serving 2,800+ students, which has raised over $400,000 to fund its work.</p>
+      </div>
+
+      <dl class="skillset reveal" style="margin:0">
+        <div class="sk-row"><dt>Languages</dt><dd>Python, Go, C++, Java, JavaScript, R, SQL, MATLAB</dd></div>
+        <div class="sk-row"><dt>ML &amp; data</dt><dd>PyTorch, Hugging Face, scikit-learn, XGBoost, pandas and NumPy, scanpy</dd></div>
+        <div class="sk-row"><dt>Systems &amp; web</dt><dd>FastAPI, React, REST APIs, SQLAlchemy, Go concurrency, distributed systems, GitHub Actions</dd></div>
+        <div class="sk-row"><dt>Methods</dt><dd>Deep learning and NLP, graph algorithms, statistical modeling, numerical methods for PDEs, bioinformatics</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== awards -- -->
+<section id="awards">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="label">Recognition</span>
+        <h2>Honors</h2>
+      </div>
+    </div>
+    <div class="awards reveal">
+      <div class="award"><div class="y">2024</div><div><b>USACO Gold Division</b><span>USA Computing Olympiad</span></div></div>
+      <div class="award"><div class="y">2025&ndash;26</div><div><b>NCWIT Aspirations in Computing</b><span>Bay Area Winner and Honorable Mention</span></div></div>
+      <div class="award"><div class="y">2026</div><div><b>YC Startup School</b><span>Invite-only, San Francisco</span></div></div>
+      <div class="award"><div class="y">2025</div><div><b>USABO &amp; USMDO Honorable Mention</b><span>Biology and Medicine/Disease Olympiads</span></div></div>
+      <div class="award"><div class="y">2025</div><div><b>Synopsys Science &amp; Engineering Fair</b><span>Honorable Mention, Biological Science</span></div></div>
+      <div class="award"><div class="y">2024</div><div><b>AP Scholar with Distinction</b><span>SAT 1580 · 4.0 UW GPA</span></div></div>
+      <div class="award"><div class="y">2024</div><div><b>President's Volunteer Service Award</b><span>Gold and Bronze</span></div></div>
+      <div class="award"><div class="y">2022</div><div><b>AlGIRLithm Hackathon, 2nd Place</b><span>Silver medal</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= contact -- -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="label reveal">Contact</span>
+    <h2 class="reveal">Tell me what you are working on.</h2>
+    <p class="reveal">I am open to software-engineering and research internships, and always happy to talk about distributed systems, ML for medicine, or anything where the hard part is the data model.</p>
+    <div class="hero-links reveal">
+      <a class="ln" href="mailto:shenisabella@gmail.com">shenisabella@gmail.com</a>
+      <a class="ln" href="https://github.com/IS-tib" target="_blank" rel="noopener">github.com/IS-tib</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>&copy; <span id="yr"></span> Isabella Shen</span>
+    <span>Philadelphia, PA</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const root = document.documentElement;
+  const icon = document.getElementById('themeIcon');
+  const moon = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>';
+  const sun  = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  function setTheme(t){ root.setAttribute('data-theme', t); icon.innerHTML = t === 'dark' ? sun : moon; }
+  setTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Reveal on scroll. Elements are hidden only once JS has confirmed it can
+  // observe them, so the page never depends on this to be readable.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = document.querySelectorAll('.reveal');
+  if (!reduce && 'IntersectionObserver' in window) {
+    els.forEach(el => el.classList.add('armed'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.remove('armed'); e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 35, 200) + 'ms'; io.observe(el); });
+    // Anything that captures a long page without scrolling it never fires the
+    // observer, so nothing stays hidden indefinitely.
+    setTimeout(() => els.forEach(el => { el.classList.remove('armed'); el.classList.add('in'); }), 8000);
+  }
+</script>
+</body>
+</html>
